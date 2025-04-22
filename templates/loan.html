@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Loan Page</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">ML Bootcamp</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Loan Page</a></li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+
+        <h1 style="text-align: center;">Enter Your Information</h1>
+            
+        <form action="loansapp/loans" method="post">
+            <div class="form-group">
+                <label>Enter Number Of Dependents <span style="color:red">*</span></label>
+                <input type="text" name="Dependents" id="Dependents" class="form-control"
+                placeholder="Number Of Dependents">
+            </div>
+            <div class="form-group">
+                <label>Select Your Education <span style="color:red">*</span></label>
+                <select class="form-control" name="Education" id="Education">
+                    <option disabled selected>SELECT OPTION</option>
+                    <option value="1">Graduate</option>
+                    <option value="0">Under Graduate</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Enter Income <span style="color:red">*</span></label>
+                <input type="text" name="ApplicantIncome" id="ApplicantIncome" class="form-control"
+                placeholder="Income">
+            </div>
+            <div class="form-group">
+                <label>Enter Loan Amount <span style="color:red">*</span></label>
+                <input type="text" name="LoanAmount" id="LoanAmount" class="form-control"
+                placeholder="Loan Amount">
+            </div>
+            <div class="form-group">
+                <label>Select Credit History <span style="color:red">*</span></label>
+                <select class="form-control" name="Credit_History" id="Credit_History">
+                    <option disabled selected>SELECT OPTION</option>
+                    <option value="1">YES : I Have Credit History</option>
+                    <option value="0">NO : I Do Not Have Credit History</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-block btn-success" value="Check your loan eligibility">
+        </form>
+    </div>
+</body>
+</html>
