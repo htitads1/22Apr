@@ -1,0 +1,64 @@
+
+pipeline {
+    agent any
+
+environment {
+    venvDir="";
+}
+    stages {
+       
+        stage("Check"){
+            steps{
+                git branch:"main",url:"https://github.com/htitads1/uj_ml.git"
+            }
+        }
+        stage('Create Virtual Environment') {
+            steps {
+                script {
+                    // Define the path where you want to create the virtual environment
+                     venvDir = "${WORKSPACE}/venv"
+
+                    // Execute the shell command to create the virtual environment
+                   // sh "virtualenv ${venvDir}"
+                    sh "python3 -m venv ${venvDir}"
+                }
+            }
+        }
+
+        stage('Activate Virtual Environment') {
+            steps {
+                script {
+                    // Activate the virtual environment
+                    def activateScript = "${venvDir}/bin/activate"
+                    if (fileExists(activateScript)) {
+                        // Execute the activate script to activate the virtual environment
+                        sh ". ${activateScript}"
+                    } else {
+                        error "Virtual environment activation script not found."
+                    }
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install required dependencies within the virtual environment
+                    sh "${venvDir}/bin/pip install -r ${WORKSPACE}/requirements.txt"
+                }
+            }
+        }
+
+ stage('RUN') {
+            steps {
+                script {
+                    // Install required dependencies within the virtual environment
+                   timeout(time:2,unit:"MINUTES"){
+                        sh "${venvDir}/bin/python3  ${WORKSPACE}/app.py"
+                   }
+                }
+            }
+        }
+        // Add more stages as needed
+    }
+}
