@@ -1,0 +1,39 @@
+pipeline{
+    agent any
+   
+   
+    stages{
+       
+        stage("CheckOiut"){
+            steps{
+                git branch:'main',url:"https://github.com/htitads1/uj_ml.git"
+            }
+        }
+       
+        stage("CleanUP"){
+           
+            steps {
+               
+                sh "docker rm loanapp -f"
+            }
+        }
+       
+        stage('Build'){
+           
+            steps{
+                 
+               
+              sh 'docker build -t loanapp .'
+             
+            }
+        }
+       
+       
+      stage("run"){
+          steps {
+         sh "docker run -itd -p 5000:9000 --name loanapp loanapp"
+            echo "Done"
+          }
+      }
+    }
+}
